@@ -8,20 +8,26 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { LOAD_POSTS } from './constants';
+import { writePosts } from './actions';
+
 
 /**
  * Github repos request/response handler
  */
-export function* getRepos() {
+export function* getPosts() {
   // Select username from store
-  const username = yield select(makeSelectUsername());
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+  
+  const requestURL = `https://jsonplaceholder.typicode.com/posts`;
 
   try {
     // Call our request helper (see 'utils/request')
-    const repos = yield call(request, requestURL);
-    yield put(reposLoaded(repos, username));
-  } catch (err) {
+    const posts = yield call(request, requestURL);
+    console.log(posts)
+   yield put(writePosts(posts))
+   
+  } 
+  catch (err) {
     yield put(repoLoadingError(err));
   }
 }
@@ -34,5 +40,5 @@ export default function* githubData() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(LOAD_REPOS, getRepos);
+  yield takeLatest(LOAD_POSTS, getPosts);
 }

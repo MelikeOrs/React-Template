@@ -15,18 +15,19 @@
  *    }
  */
 
-import { CHANGE_USERNAME } from './constants';
+import { LOAD_POSTS, WRITE_POSTS } from './constants';
 
-/**
- * Changes the input field of the form
- *
- * @param  {string} username The new text of the input field
- *
- * @return {object} An action object with a type of CHANGE_USERNAME
- */
-export function changeUsername(username) {
+
+export function loadPosts() {
   return {
-    type: CHANGE_USERNAME,
-    username,
+    type: LOAD_POSTS,
+    
+  };
+}
+
+export function writePosts(posts) {
+  return {
+    type: WRITE_POSTS,
+    posts,
   };
 }

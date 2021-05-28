@@ -25,7 +25,7 @@ export function* getPosts() {
     console.log(posts);
     yield put(writePosts(posts));
   } catch (err) {
-   
+
   }
 }
 

@@ -12,7 +12,13 @@ const makeSelectUsername = () =>
     selectHome,
     homeState => homeState.user,
 
-    // homestate nerden geliyor ?
+  );
+const makeSelectPosts = () =>
+  createSelector(
+    selectHome,
+    homeState => homeState.posts,
+
+   
   );
 
-export { selectHome, makeSelectUsername };
+export { selectHome, makeSelectUsername ,makeSelectPosts};

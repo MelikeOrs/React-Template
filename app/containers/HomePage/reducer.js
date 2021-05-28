@@ -15,7 +15,7 @@ export const initialState = {
   posts: [],
 };
 
-/* eslint-disable default-case, no-param-reassign */
+// /* eslint-disable default-case, no-param-reassign */
 const homeReducer = (state = initialState, action) =>
   produce(state, draft => {
     console.log(action.type);
@@ -28,3 +28,13 @@ const homeReducer = (state = initialState, action) =>
   });
 
 export default homeReducer;
+// import { WRITE_POSTS } from './actions';
+
+// export default (state = {}, { type, posts }) => {
+//   switch (type) {
+//     case WRITE_POSTS:
+//       return posts;
+//     default:
+//       return state;
+//   }
+// };

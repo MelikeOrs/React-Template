@@ -28,7 +28,6 @@ import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
-import { changeUsername, writePosts } from './actions';
 import { loadPosts } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
@@ -37,13 +36,12 @@ import saga from './saga';
 const key = 'home';
 
 export function HomePage({
-  username,
+  user,
   loading,
   error,
   repos,
-  posts,
   getPosts,
-  
+  onChangeUsername,
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
@@ -57,22 +55,11 @@ export function HomePage({
     loading,
     error,
     repos,
-    posts,
   };
-  // const postListProps ={
-  //   posts
-  // }
 
   return (
     <article>
-      <Helmet>
-        <title>Home Page</title>
-        <meta
-          name="description"
-          content="A React.js Boilerplate application homepage"
-        />
-      </Helmet>
-      {/* <PostList {...postListProps} /> */}
+      
     </article>
   );
 }
@@ -81,18 +68,16 @@ HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  // posts: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
-  username: PropTypes.string,
+  user: PropTypes.string,
   onChangeUsername: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   repos: makeSelectRepos(),
-  username: makeSelectUsername(),
+  user: makeSelectUsername(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
-  // posts: makeSelectPost(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -101,6 +86,8 @@ export function mapDispatchToProps(dispatch) {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadPosts());
     },
+
+    
   };
 }
 

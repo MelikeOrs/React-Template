@@ -11,24 +11,21 @@ import { makeSelectUsername } from 'containers/HomePage/selectors';
 import { LOAD_POSTS } from './constants';
 import { writePosts } from './actions';
 
-
 /**
  * Github repos request/response handler
  */
 export function* getPosts() {
   // Select username from store
-  
+
   const requestURL = `https://jsonplaceholder.typicode.com/posts`;
 
   try {
     // Call our request helper (see 'utils/request')
     const posts = yield call(request, requestURL);
-    console.log(posts)
-   yield put(writePosts(posts))
+    console.log(posts);
+    yield put(writePosts(posts));
+  } catch (err) {
    
-  } 
-  catch (err) {
-    yield put(repoLoadingError(err));
   }
 }
 

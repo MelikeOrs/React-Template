@@ -10,7 +10,9 @@ const selectHome = state => state.home || initialState;
 const makeSelectUsername = () =>
   createSelector(
     selectHome,
-    homeState => homeState.username,
+    homeState => homeState.user,
+
+    // homestate nerden geliyor ?
   );
 
 export { selectHome, makeSelectUsername };

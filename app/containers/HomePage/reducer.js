@@ -12,21 +12,19 @@ import { WRITE_POSTS } from './constants';
 
 // The initial state of the App
 export const initialState = {
-  posts:[]
+  posts: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const homeReducer = (state = initialState, action) =>
   produce(state, draft => {
-    console.log(action.type)
+    console.log(action.type);
     switch (action.type) {
       case WRITE_POSTS:
-
+        console.log("geldim")
         draft.posts = action.posts;
-
         break;
     }
-    
   });
 
 export default homeReducer;

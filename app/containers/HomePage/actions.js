@@ -17,11 +17,9 @@
 
 import { LOAD_POSTS, WRITE_POSTS } from './constants';
 
-
 export function loadPosts() {
   return {
     type: LOAD_POSTS,
-    
   };
 }
 
@@ -31,3 +29,4 @@ export function writePosts(posts) {
     posts,
   };
 }
+// export const writePosts = posts => ({ type: WRITE_POSTS, posts });
